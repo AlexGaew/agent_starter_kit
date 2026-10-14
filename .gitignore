@@ -1,0 +1,14 @@
+# Личные настройки агента
+.claude/settings.local.json
+
+# Секреты
+.env
+.env.*
+
+# Зависимости и сборка
+node_modules/
+target/
+build/
+dist/
+.venv/
+__pycache__/
