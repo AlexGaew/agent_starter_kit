@@ -2,6 +2,8 @@
 
 Универсальная настройка кодинг-агента (Claude Code) для нового проекта: правила, навыки, hooks, права и память между сессиями. Не привязана к стеку: стек выясняется опросом при старте проекта.
 
+> **Не только Claude Code.** Hooks, `settings.json`, skills и `rules/` работают только в Claude Code. Другие агенты прочитают лишь `AGENTS.md`, поэтому общие правила держи там.
+
 ## Быстрый старт
 
 1. Скопируй содержимое папки в корень нового проекта (включая скрытые файлы):
@@ -29,7 +31,7 @@
 | `.claude/rules/run-tests-before-done.md` | Не называть фичу готовой, пока не пройдены тесты (глобальное) |
 | `.claude/rules/session-memory.md` | Как вести `docs/memory.md` и архив (глобальное) |
 | `.claude/rules/tdd.md`, `tests.md` | TDD и правила тестов; подгружаются по `paths`, поправь под структуру проекта |
-| `.claude/skills/new-project-interview` | Опрос «grill me» при старте проекта |
+| `.claude/skills/new-project-interview` | Опрос «grill me» при старте проекта; в конце инициализирует ast-index (`ast-index:initialize`) |
 | `.claude/skills/write-tests` | Процедура написания юнит-тестов до кода |
 | `.claude/skills/review-step` | Ручная проверка шага перед слиянием: `/review-step <шаг>` |
 | `docs/plan.md`, `docs/memory.md` | Шаблоны плана и журнала |
@@ -47,7 +49,7 @@
 
 ## Ограничения
 
-- Hooks, `settings.json`, skills и `rules/` работают только в Claude Code. Другие агенты прочитают лишь `AGENTS.md`, поэтому общие правила держи там.
+- Перенос на другие агентов (не Claude Code) ограничен `AGENTS.md`, см. примечание в начале README.
 - Hook `block_bash_writes.py` блокирует любую команду Bash, в тексте которой встречается имя файла секретов, даже в heredoc. Такой текст пиши инструментом Write/Edit.
 - Проверено на Claude Code версии, с которой создавалась настройка; при крупных обновлениях проверь формат hooks в `settings.json`.
 
